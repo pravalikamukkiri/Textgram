@@ -1,4 +1,6 @@
-# ffff
+# Textgram
+
+A uni social media platform made using flutter
 
 A new Flutter application.
 
