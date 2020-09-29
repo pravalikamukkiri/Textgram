@@ -14,6 +14,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
 
+  final _formKey = GlobalKey<FormState>();
+
   String email;
   String password;
 
@@ -45,6 +47,7 @@ class _RegisterState extends State<Register> {
         centerTitle: true,
       ),
       body: Form(
+        key: _formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
@@ -62,6 +65,7 @@ class _RegisterState extends State<Register> {
                 fontSize: 18,
               ),),
               TextFormField(
+                validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                   setState(() {
                     email = val;
@@ -71,6 +75,7 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 20,),
               TextFormField(
                 obscureText: true,
+                validator: (val) => (val.length < 6) ? 'Enter a pswd of 6+ chars' : null,
                 onChanged: (val) {
                   setState(() {
                     password = val;
@@ -80,11 +85,15 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 20,),
               RaisedButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: email, password: password).then((result) {
-                    print(result.user.email);
-                    widget.authenticate();
-                  });
+                  if(_formKey.currentState.validate()) {
+                    print('ok');
+
+                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: email, password: password).then((result) {
+                      print(result.user.email);
+                      widget.authenticate();
+                    });
+                  }
                 },
                 child: Text('Register'),
               ),

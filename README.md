@@ -1,4 +1,4 @@
-# ffff
+Social media app using flutter
 
 A new Flutter application.
 
