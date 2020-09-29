@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
           Padding(
             padding: const EdgeInsets.fromLTRB(3, 10, 0, 0),
             child: Text(
-              'Instaagram',
+              'Textgram',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 30,
