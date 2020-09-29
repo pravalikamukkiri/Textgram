@@ -14,6 +14,8 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  final _formKey = GlobalKey<FormState>();
+
   String email;
   String password;
 
@@ -45,6 +47,7 @@ class _SigninState extends State<Signin> {
         centerTitle: true,
       ),
       body: Form(
+        key: _formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
@@ -62,6 +65,7 @@ class _SigninState extends State<Signin> {
                   fontSize: 18,
                 ),),
               TextFormField(
+                validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                   setState(() {
                     email = val;
@@ -71,6 +75,7 @@ class _SigninState extends State<Signin> {
               SizedBox(height: 20,),
               TextFormField(
                 obscureText: true,
+                validator: (val) => val.length < 6 ? 'Enter an pswd of 6+chars' : null,
                 onChanged: (val) {
                   setState(() {
                     password = val;
@@ -80,11 +85,14 @@ class _SigninState extends State<Signin> {
               SizedBox(height: 20,),
               RaisedButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: email, password: password).then((result) {
-                    print(result.user.email);
-                    widget.authenticate();
-                  });
+                  if(_formKey.currentState.validate()) {
+                    //print('ok');
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: email, password: password).then((result) {
+                      print(result.user.email);
+                      widget.authenticate();
+                    });
+                  }
                 },
                 child: Text('Signin'),
               ),
