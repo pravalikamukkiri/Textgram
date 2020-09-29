@@ -86,8 +86,6 @@ class _RegisterState extends State<Register> {
               RaisedButton(
                 onPressed: () async {
                   if(_formKey.currentState.validate()) {
-                    print('ok');
-
                     await FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: email, password: password).then((result) {
                       print(result.user.email);
