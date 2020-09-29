@@ -1,5 +1,4 @@
 Social media app using flutter
-
 A new Flutter application.
 
 ## Getting Started
