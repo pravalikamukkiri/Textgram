@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/rendering.dart';
+import 'package:ffff/services/database.dart';
+import 'package:ffff/items.dart';
 
 class Register extends StatefulWidget {
 
@@ -18,7 +20,7 @@ class _RegisterState extends State<Register> {
 
   String email;
   String password;
-
+  String name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +51,9 @@ class _RegisterState extends State<Register> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: Column(
             children: [
-              SizedBox(height: 40,),
               Container(
                 padding: EdgeInsets.all(5),
                 child: Text('New to textgram ',
@@ -64,6 +65,10 @@ class _RegisterState extends State<Register> {
               style: TextStyle(
                 fontSize: 18,
               ),),
+              //SizedBox(height: 10,),
+              Container(
+                alignment: Alignment.bottomLeft,
+                  child: Text('Email')),
               TextFormField(
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
@@ -72,7 +77,10 @@ class _RegisterState extends State<Register> {
                   });
                 },
               ),
-              SizedBox(height: 20,),
+              //SizedBox(height: 20,),
+              Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text('Password')),
               TextFormField(
                 obscureText: true,
                 validator: (val) => (val.length < 6) ? 'Enter a pswd of 6+ chars' : null,
@@ -82,14 +90,30 @@ class _RegisterState extends State<Register> {
                   });
                 },
               ),
-              SizedBox(height: 20,),
+              //SizedBox(height: 20,),
+              Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text('Name')),
+              TextFormField(
+                onChanged: (val) {
+                  setState(() {
+                    name=val;
+                  });
+                },
+              ),
+              //SizedBox(height: 20,),
               RaisedButton(
                 onPressed: () async {
+                  setState(() {
+                    username=name;
+                    print(username);
+                  });
                   if(_formKey.currentState.validate()) {
                     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                        email: email, password: password).then((result) {
+                        email: email, password: password).then((result) async{
                       print(result.user.email);
                       widget.authenticate();
+                      await DatabaseService(uid: result.user.uid).updateUserData(name, '');
                     });
                   }
                 },

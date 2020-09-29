@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ffff/screens/profile.dart';
 
 class Home extends StatefulWidget {
   final Function toggleView;
@@ -68,10 +69,10 @@ class _HomeState extends State<Home> {
             ),
             IconButton(
               onPressed: (){
-                /*Navigator.push(
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => user()),
-                );*/
+                  MaterialPageRoute(builder: (context) => User()),
+                );
               },
               icon: Icon(Icons.account_circle),
               iconSize: 32.0,
