@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ffff/screens/profile.dart';
+<<<<<<< HEAD
 import 'package:ffff/screens/search.dart';
+=======
+
+>>>>>>> 9bdd33cbc51afd6421542c38486b167d71f52154
 class Home extends StatefulWidget {
   final Function toggleView;
   Home({this.toggleView});
@@ -10,9 +14,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+<<<<<<< HEAD
   initiateSearch(){
 
   }
+=======
+>>>>>>> 9bdd33cbc51afd6421542c38486b167d71f52154
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,10 +63,14 @@ class _HomeState extends State<Home> {
               iconSize: 32.0,
             ),
             IconButton(
+<<<<<<< HEAD
               onPressed: (){Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Searchuser()),
               );},
+=======
+              onPressed: (){},
+>>>>>>> 9bdd33cbc51afd6421542c38486b167d71f52154
               icon: Icon(Icons.search),
               iconSize: 32.0,
             ),

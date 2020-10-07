@@ -4,7 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ffff/screens/home.dart';
 import 'package:ffff/screens/editprofile.dart';
 import 'package:ffff/items.dart';
+<<<<<<< HEAD
 import 'package:ffff/screens/search.dart';
+=======
+
+>>>>>>> 9bdd33cbc51afd6421542c38486b167d71f52154
 class User extends StatefulWidget {
   @override
   _UserState createState() => _UserState();
@@ -88,10 +92,14 @@ class _UserState extends State<User> {
               iconSize: 32.0,
             ),
             IconButton(
+<<<<<<< HEAD
               onPressed: (){ Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Searchuser()),
               );},
+=======
+              onPressed: (){},
+>>>>>>> 9bdd33cbc51afd6421542c38486b167d71f52154
               icon: Icon(Icons.search),
               iconSize: 32.0,
             ),
