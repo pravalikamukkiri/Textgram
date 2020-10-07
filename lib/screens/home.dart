@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ffff/screens/profile.dart';
 import 'image_picker.dart';
+import 'search.dart';
 class Home extends StatefulWidget {
   final Function toggleView;
   Home({this.toggleView});
@@ -53,7 +54,12 @@ class _HomeState extends State<Home> {
               iconSize: 32.0,
             ),
             IconButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>Searchuser()),
+                );
+              },
               icon: Icon(Icons.search),
               iconSize: 32.0,
             ),
