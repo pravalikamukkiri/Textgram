@@ -25,10 +25,11 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 29,
         backgroundColor: Colors.black,
         actions: [
           Container(
-            padding: EdgeInsets.all(10.0),
+           // padding: EdgeInsets.all(10.0),
             child: RaisedButton(
               color: Colors.grey,
               onPressed: (){
@@ -63,12 +64,16 @@ class _RegisterState extends State<Register> {
               ),
               Text('Register here',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
               ),),
               //SizedBox(height: 10,),
               Container(
+                height: 10,
                 alignment: Alignment.bottomLeft,
-                  child: Text('Email')),
+                  child: Text('Email',
+                  style: TextStyle(
+                    fontSize: 9,
+                  ),)),
               TextFormField(
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
@@ -79,8 +84,11 @@ class _RegisterState extends State<Register> {
               ),
               //SizedBox(height: 20,),
               Container(
+                height: 10,
                   alignment: Alignment.bottomLeft,
-                  child: Text('Password')),
+                  child: Text('Password',style: TextStyle(
+                    fontSize: 9,
+                  ),)),
               TextFormField(
                 obscureText: true,
                 validator: (val) => (val.length < 6) ? 'Enter a pswd of 6+ chars' : null,
@@ -92,8 +100,11 @@ class _RegisterState extends State<Register> {
               ),
               //SizedBox(height: 20,),
               Container(
+                height: 10,
                   alignment: Alignment.bottomLeft,
-                  child: Text('Name')),
+                  child: Text('Name',style: TextStyle(
+                    fontSize: 9,
+                  ),)),
               TextFormField(
                 onChanged: (val) {
                   setState(() {
@@ -112,6 +123,9 @@ class _RegisterState extends State<Register> {
                     await FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: email, password: password).then((result) async{
                       print(result.user.email);
+                      setState(() {
+                        ud=result.user.uid;
+                      });
                       widget.authenticate();
                       await DatabaseService(uid: result.user.uid).updateUserData(name, '');
                     });

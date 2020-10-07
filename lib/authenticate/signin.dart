@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/rendering.dart';
 import 'package:ffff/items.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 class Signin extends StatefulWidget {
   final Function toggleView;
@@ -23,6 +24,7 @@ class _SigninState extends State<Signin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //toolbarHeight: 29,
         backgroundColor: Colors.black,
         actions: [
           Container(
@@ -52,7 +54,7 @@ class _SigninState extends State<Signin> {
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
-              SizedBox(height: 40,),
+             // SizedBox(height: 40,),
               Container(
                 padding: EdgeInsets.all(5),
                 child: Text('Already have an account',
@@ -88,8 +90,11 @@ class _SigninState extends State<Signin> {
                   if(_formKey.currentState.validate()) {
                     print('ok');
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: email, password: password).then((result) {
+                        email: email, password: password).then((result) async{
                       print(result.user.email);
+                      setState(() {
+                        ud=result.user.uid;
+                      });
                       widget.authenticate();
                     });
                   }
