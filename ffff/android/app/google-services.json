@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "214291818174",
+    "firebase_url": "https://textgram-9d000.firebaseio.com",
+    "project_id": "textgram-9d000",
+    "storage_bucket": "textgram-9d000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214291818174:android:9e00dddaa6d5d9db75e0ef",
+        "android_client_info": {
+          "package_name": "com.aztlan.ffff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214291818174-vpil3uhgluk7o4tqluasc08lpcpqia85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgkkgUsrAVpTJwvs-sFSb1X6-A5KSloQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214291818174-vpil3uhgluk7o4tqluasc08lpcpqia85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
